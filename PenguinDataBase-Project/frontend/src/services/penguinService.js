@@ -1,0 +1,81 @@
+import { API_CONFIG } from '../utils/constants';
+
+export const penguinService = {
+  async fetchBackendData() {
+    try {
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.ROOT}`);
+      const data = await response.json();
+      return { success: true, data };
+    } catch (error) {
+      console.error('Error connecting to backend:', error);
+      return { 
+        success: false, 
+        error: 'Unable to connect to backend. Make sure the server is running on port 5000.' 
+      };
+    }
+  },
+
+  async fetchPenguins() {
+    try {
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}`);
+      const data = await response.json();
+      return { success: true, data };
+    } catch (error) {
+      console.error('Error fetching penguins:', error);
+      return { success: false, error: 'Failed to fetch penguins' };
+    }
+  },
+
+  async fetchStats() {
+    try {
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.STATS}`);
+      const data = await response.json();
+      return { success: true, data };
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+      return { success: false, error: 'Failed to fetch stats' };
+    }
+  },
+
+  async addPenguin(penguinData) {
+    try {
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(penguinData)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        return { success: true, data: result };
+      } else {
+        return { success: false, error: result.error };
+      }
+    } catch (error) {
+      console.error('Error adding penguin:', error);
+      return { success: false, error: 'Failed to add penguin' };
+    }
+  },
+
+  async deletePenguin(id) {
+    try {
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}/${id}`, {
+        method: 'DELETE'
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        return { success: true, data: result };
+      } else {
+        return { success: false, error: result.error };
+      }
+    } catch (error) {
+      console.error('Error deleting penguin:', error);
+      return { success: false, error: 'Failed to delete penguin' };
+    }
+  }
+};
