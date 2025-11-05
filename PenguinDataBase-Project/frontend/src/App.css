@@ -19,6 +19,50 @@
   color: white;
 }
 
+.App-main {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-footer {
+  background-color: #1e1e1e;
+  padding: 15px;
+  color: #ccc;
+  text-align: center;
+}
+
+/* About page styles */
+.about-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.about-page h2 {
+  color: #61dafb;
+  border-bottom: 2px solid #61dafb;
+  padding-bottom: 10px;
+}
+
+.about-page h3 {
+  color: #ff6b35;
+  margin-top: 30px;
+}
+
+.about-page ul {
+  padding-left: 20px;
+}
+
+.about-page li {
+  margin: 8px 0;
+}
+
 .connection-status {
   margin-top: 20px;
   padding: 20px;
