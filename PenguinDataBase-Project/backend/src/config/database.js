@@ -67,3 +67,10 @@ class Database {
 const database = new Database();
 
 module.exports = database;
+
+
+/* My Notes*/
+/*
+
+The javascript classs to establish connection to the database
+*/
