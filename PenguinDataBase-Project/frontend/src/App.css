@@ -36,7 +36,35 @@
   text-align: center;
 }
 
-/* About page styles */
+/* Navigation styles */
+.Nav-bar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.Nav-link {
+  color: #61dafb;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.Nav-link:hover {
+  background-color: rgba(97, 218, 251, 0.1);
+  color: white;
+}
+
+.Nav-link.active {
+  background-color: #61dafb;
+  color: #282c34;
+}
+
+/* Page styles */
+.home-page,
+.database-page,
 .about-page {
   max-width: 800px;
   margin: 0 auto;
@@ -44,10 +72,13 @@
   text-align: left;
 }
 
+.database-page h2,
 .about-page h2 {
   color: #61dafb;
   border-bottom: 2px solid #61dafb;
   padding-bottom: 10px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .about-page h3 {
@@ -214,3 +245,5 @@
     transform: rotate(360deg);
   }
 }
+
+/* Navigation Bar */
