@@ -30,7 +30,7 @@ const Map = () => {
     'Rockhopper': { lat: -54.4, lng: -36.6, region: 'Falkland Islands' },
     'Macaroni': { lat: -54.5, lng: -36.3, region: 'South Georgia' },
     'King': { lat: -54.0, lng: -37.0, region: 'South Georgia' },
-    'Royal': { lat: -54.3, lng: -36.5, region: 'Macquarie Island' },
+    'Royal': { lat: -54.5, lng: 158.9, region: 'Macquarie Island' },
     'African': { lat: -34.0, lng: 18.5, region: 'South Africa' },
     'Magellanic': { lat: -42.5, lng: -64.5, region: 'Patagonia' },
     'Humboldt': { lat: -12.0, lng: -77.0, region: 'Peru/Chile' },
@@ -188,11 +188,11 @@ const Map = () => {
         <ul>
           <li>🔵 <strong>Markers show penguins from your database</strong></li>
           <li>📍 <strong>Location Priority:</strong>
-            <ol style={{ marginTop: '5px', marginLeft: '20px' }}>
+            <ul style={{ marginTop: '5px', marginLeft: '20px' }}>
               <li>If penguin has a known location (e.g., "Antarctic Peninsula"), uses that location</li>
               <li>Otherwise, uses typical habitat for the species</li>
               <li>If species/location unknown, placed in South Atlantic near Antarctica ⚠️</li>
-            </ol>
+            </ul>
           </li>
           <li>💡 <strong>Click markers</strong> to see full penguin details</li>
           <li>🔍 <strong>Zoom and pan</strong> to explore different regions</li>
