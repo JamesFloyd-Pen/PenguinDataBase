@@ -24,6 +24,12 @@ const Navigation = () => {
       >
         Database
       </Link>
+      <Link 
+        to="/map" 
+        className={`Nav-link ${location.pathname === '/map' ? 'active' : ''}`}
+      >
+        Map
+      </Link>
     </nav>
   );
 };
