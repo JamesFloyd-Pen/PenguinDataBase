@@ -5,6 +5,7 @@ import Footer from './components/common/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Database from './pages/Database';
+import Map from './pages/Map'; 
 import { PenguinProvider } from './context/PenguinContext';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/database" element={<Database />} />
+              <Route path="/map" element={<Map />} /> 
             </Routes>
           </main>
           <Footer />
