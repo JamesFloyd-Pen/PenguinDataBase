@@ -121,12 +121,41 @@ const Map = () => {
       }
     });
 
-    // Add markers for each penguin in the database
+    // Track coordinate usage to detect overlaps
+    const coordinateTracker = {};
+    
+    // First pass: count how many penguins share each coordinate
+    penguins.forEach((penguin) => {
+      const coordinates = getPenguinCoordinates(penguin);
+      const coordKey = `${coordinates[0]},${coordinates[1]}`;
+      
+      if (!coordinateTracker[coordKey]) {
+        coordinateTracker[coordKey] = [];
+      }
+      coordinateTracker[coordKey].push(penguin);
+    });
+
+    // Add markers for each penguin in the database with offset for overlaps
     penguins.forEach((penguin) => {
       console.log('Full penguin object:', JSON.stringify(penguin, null, 2)); // Debug: check ALL data
       
       const coordinates = getPenguinCoordinates(penguin);
-      const marker = L.marker(coordinates).addTo(map);
+      const coordKey = `${coordinates[0]},${coordinates[1]}`;
+      const penguinsAtLocation = coordinateTracker[coordKey];
+      
+      // Calculate offset if multiple penguins at same location
+      let finalCoordinates = [...coordinates];
+      if (penguinsAtLocation.length > 1) {
+        const index = penguinsAtLocation.indexOf(penguin);
+        const offsetDistance = 0.3; // degrees offset
+        const angle = (360 / penguinsAtLocation.length) * index;
+        const angleRad = (angle * Math.PI) / 180;
+        
+        finalCoordinates[0] += offsetDistance * Math.cos(angleRad);
+        finalCoordinates[1] += offsetDistance * Math.sin(angleRad);
+      }
+      
+      const marker = L.marker(finalCoordinates).addTo(map);
       
       // Determine if this is a default location
       const isDefaultLocation = coordinates[0] === DEFAULT_LOCATION.lat && 
