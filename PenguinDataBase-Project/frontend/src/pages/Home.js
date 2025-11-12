@@ -1,13 +1,13 @@
 import React from 'react';
 import DatabaseStats from '../components/penguin/DatabaseStats';
+import DailyPenguin from '../components/penguin/DailyPenguin';
 import PenguinForm from '../components/penguin/PenguinForm';
-import PenguinList from '../components/penguin/PenguinList';
 
 const Home = () => {
   return (
     <div className="home-page">
+      <DailyPenguin />
       <PenguinForm />
-      <PenguinList />
     </div>
   );
 };

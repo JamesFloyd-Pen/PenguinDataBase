@@ -323,4 +323,81 @@
   font-size: 14px;
 }
 
+/* Daily Penguin Styles */
+.daily-penguin-container {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.daily-penguin-container h2 {
+  color: #61dafb;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.daily-penguin-box {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5f7e 100%);
+  border: 2px solid #61dafb;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+.daily-penguin-info {
+  margin-bottom: 20px;
+}
+
+.daily-penguin-info h3 {
+  color: #61dafb;
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.daily-penguin-species,
+.daily-penguin-location {
+  color: #fff;
+  font-size: 1.2em;
+  margin: 8px 0;
+}
+
+.daily-penguin-species strong,
+.daily-penguin-location strong {
+  color: #ff6b35;
+}
+
+.daily-penguin-description {
+  color: #ccc;
+  font-size: 1em;
+  line-height: 1.6;
+  border-top: 1px solid rgba(97, 218, 251, 0.3);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.show-all-penguins-btn {
+  background: linear-gradient(135deg, #61dafb 0%, #21a0c4 100%);
+  color: #282c34;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.show-all-penguins-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #21a0c4 0%, #1a7a9a 100%);
+}
+
+.show-all-penguins-btn:active {
+  transform: translateY(0);
+}
+
 /* Navigation Bar */
