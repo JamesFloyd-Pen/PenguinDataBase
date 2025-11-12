@@ -228,7 +228,7 @@ const Map = () => {
         </ul>
         
         <h3>🗺️ Supported Species & Regions</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '14px' }}>
+        <div className="map-species-region">
           <div>
             <strong>Antarctica:</strong> Emperor, Adélie, Gentoo, Chinstrap<br/>
             <strong>Sub-Antarctic:</strong> Rockhopper, Macaroni, King, Royal<br/>

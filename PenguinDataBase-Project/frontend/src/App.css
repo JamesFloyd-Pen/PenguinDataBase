@@ -316,4 +316,11 @@
   color: #61dafb;
 }
 
+.map-species-region {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 14px;
+}
+
 /* Navigation Bar */
