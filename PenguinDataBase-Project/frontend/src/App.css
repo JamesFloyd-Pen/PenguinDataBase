@@ -400,4 +400,31 @@
   transform: translateY(0);
 }
 
+/* CSV Export Button */
+.csv-export-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20833a 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.csv-export-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #20833a 0%, #1a6d30 100%);
+}
+
+.csv-export-btn:active {
+  transform: translateY(0);
+}
+
 /* Navigation Bar */
