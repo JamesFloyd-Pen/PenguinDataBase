@@ -194,9 +194,28 @@
 
 .penguin-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   margin-top: 20px;
+}
+
+/* Responsive grid for smaller screens */
+@media (max-width: 1200px) {
+  .penguin-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .penguin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .penguin-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .penguin-card {
@@ -397,6 +416,32 @@
 }
 
 .show-all-penguins-btn:active {
+  transform: translateY(0);
+}
+
+/* Show More Button */
+.show-more-btn {
+  background: linear-gradient(135deg, #61dafb 0%, #21a0c4 100%);
+  color: #282c34;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  margin: 20px auto;
+  display: block;
+}
+
+.show-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #21a0c4 0%, #1a7a9a 100%);
+}
+
+.show-more-btn:active {
   transform: translateY(0);
 }
 
