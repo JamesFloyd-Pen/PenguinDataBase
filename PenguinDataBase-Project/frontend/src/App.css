@@ -63,7 +63,15 @@
 }
 
 /* Page styles */
-.home-page,
+.home-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .database-page,
 .about-page {
   max-width: 800px;

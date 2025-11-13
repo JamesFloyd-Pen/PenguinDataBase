@@ -203,7 +203,7 @@ const Map = () => {
   return (
     <div className="map-page">
       <h2>🐧 Penguin Database Map</h2>
-      <p>Interactive map showing locations of penguins in the database ({penguins.length} penguins)</p>
+      <p>Interactive map showing locations of ({penguins.length} penguins) in the database.</p>
       
       <div className="map-container">
         <div 
