@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { usePenguinContext } from '../../context/PenguinContext';
 import PenguinCard from './PenguinCard';
+import PenguinSheet from './PenguinSheet';
 
 const PenguinList = () => {
   const { penguins } = usePenguinContext();
@@ -22,16 +23,19 @@ const PenguinList = () => {
               <PenguinCard key={penguin._id} penguin={penguin} />
             ))}
           </div>
-          {hasMorePenguins && !showAll && (
-            <button className="show-more-btn" onClick={() => setShowAll(true)}>
-              Show More ({penguins.length - INITIAL_DISPLAY_COUNT} more penguins) ⬇️
-            </button>
-          )}
-          {showAll && hasMorePenguins && (
-            <button className="show-more-btn" onClick={() => setShowAll(false)}>
-              Show Less ⬆️
-            </button>
-          )}
+          <div className="penguin-list-actions">
+            {hasMorePenguins && !showAll && (
+              <button className="show-more-btn" onClick={() => setShowAll(true)}>
+                Show More ({penguins.length - INITIAL_DISPLAY_COUNT} more penguins) ⬇️
+              </button>
+            )}
+            {showAll && hasMorePenguins && (
+              <button className="show-more-btn" onClick={() => setShowAll(false)}>
+                Show Less ⬆️
+              </button>
+            )}
+            <PenguinSheet />
+          </div>
         </>
       )}
     </div>

@@ -8,11 +8,13 @@ const Database = () => {
     <div className="database-page">
       <h2>Penguin Database</h2>
       <p>View and manage all penguins in the database.</p>
-      <DatabaseStats />
-      <PenguinSheet />
       <PenguinList />
     </div>
   );
 };
 
 export default Database;
+
+//      <DatabaseStats />
+//       <PenguinSheet />
+

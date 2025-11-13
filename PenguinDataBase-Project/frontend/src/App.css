@@ -427,6 +427,16 @@
   transform: translateY(0);
 }
 
+/* Penguin List Actions Container */
+.penguin-list-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
 /* Show More Button */
 .show-more-btn {
   background: linear-gradient(135deg, #61dafb 0%, #21a0c4 100%);
@@ -439,8 +449,6 @@
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  margin: 20px auto;
-  display: block;
 }
 
 .show-more-btn:hover {

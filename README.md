@@ -26,8 +26,9 @@ Penguin Database is a full-stack web application that allows users to enter thei
 ## Demo
 
 <p align="center">
-  <img src="Demo/Screenshot-Home.png" alt="Home Page" width="30%" />
-  <img src="Demo/Edward the Penguin.png" alt="Penguin Details" width="30%" />
-  <img src="Demo/Penguin-Data-Map.png" alt="Interactive Map" width="30%" />
+  <img src="Demo/Screenshot-Home.png" alt="Home Page" width="400" height="250" />
+  <img src="Demo/Edward the Penguin.png" alt="Penguin Details" width="400" height="250" />
+  <img src="Demo/Penguin-Data-Map.png" alt="Interactive Map" width="400" height="250" />
+  <img src="Demo/Penguin Database.png" alt="Database" width="400" height="250" />
 </p>
 
