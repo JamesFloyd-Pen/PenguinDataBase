@@ -23,6 +23,9 @@ Penguin Database is a full-stack web application that allows users to enter thei
 - MVC Pattern
 - React Context API for state management
 
+### AI Agent
+- Github Copilot and Claude
+
 ## Demo
 
 <p align="center">
