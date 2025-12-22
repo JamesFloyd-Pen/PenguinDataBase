@@ -77,5 +77,21 @@ export const penguinService = {
       console.error('Error deleting penguin:', error);
       return { success: false, error: 'Failed to delete penguin' };
     }
+  },
+
+  async searchPenguins(searchTerm) {
+    try {
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}/search?q=${encodeURIComponent(searchTerm)}`);
+      const result = await response.json();
+      
+      if (response.ok) {
+        return { success: true, data: result.data };
+      } else {
+        return { success: false, error: result.message };
+      }
+    } catch (error) {
+      console.error('Error searching penguins:', error);
+      return { success: false, error: 'Failed to search penguins' };
+    }
   }
 };

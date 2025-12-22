@@ -489,3 +489,25 @@
 }
 
 /* Navigation Bar */
+
+/* Search Bar Style */
+.search-input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 250px;
+  max-width: 100%;
+  background: #555;
+  color: white;
+}
+
+.search-penguin-btn{
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
