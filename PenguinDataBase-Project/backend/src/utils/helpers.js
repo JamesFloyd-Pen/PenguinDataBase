@@ -52,7 +52,7 @@ const logPenguinOperation = (operation, penguin) => {
  * @returns {object} - Sanitized penguin data
  */
 const sanitizePenguinData = (data) => {
-  return {
+  const sanitized = {
     name: data.name?.trim(),
     species: data.species?.trim(),
     age: data.age ? parseInt(data.age) : null,
@@ -62,6 +62,13 @@ const sanitizePenguinData = (data) => {
     createdAt: new Date(),
     updatedAt: new Date()
   };
+  
+  // Preserve userId if provided (for user-owned penguins)
+  if (data.userId) {
+    sanitized.userId = data.userId;
+  }
+  
+  return sanitized;
 };
 
 /**

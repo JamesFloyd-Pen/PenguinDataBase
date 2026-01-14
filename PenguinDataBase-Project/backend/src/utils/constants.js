@@ -11,8 +11,14 @@ const MESSAGES = {
   PENGUIN_NOT_FOUND: 'Penguin not found',
   PENGUIN_REQUIRED_FIELDS: 'Name and species are required',
   
-  // User messages
-  USER_CREATED: 'User created',
+  // Auth messages
+  REGISTER_SUCCESS: 'User registered successfully!',
+  LOGIN_SUCCESS: 'Login successful!',
+  LOGOUT_SUCCESS: 'Logout successful',
+  INVALID_CREDENTIALS: 'Invalid email or password',
+  UNAUTHORIZED: 'Unauthorized - Please log in',
+  TOKEN_REQUIRED: 'Access token required',
+  TOKEN_INVALID: 'Invalid or expired token',
   
   // Error messages
   INTERNAL_ERROR: 'Internal server error',
@@ -30,6 +36,7 @@ const STATUS_CODES = {
   OK: 200,
   CREATED: 201,
   BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
   NOT_FOUND: 404,
   INTERNAL_ERROR: 500
 };
@@ -47,6 +54,12 @@ const VALIDATION = {
     WEIGHT_MAX: 50,
     HEIGHT_MIN: 0,
     HEIGHT_MAX: 150
+  },
+  USER: {
+    USERNAME_MIN_LENGTH: 3,
+    USERNAME_MAX_LENGTH: 30,
+    PASSWORD_MIN_LENGTH: 6,
+    EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   }
 };
 

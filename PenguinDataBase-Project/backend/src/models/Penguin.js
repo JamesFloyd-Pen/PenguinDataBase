@@ -28,6 +28,7 @@ class Penguin {
     this.location = data.location || '';
     this.weight = data.weight || null;
     this.height = data.height || null;
+    this.userId = data.userId || null; // Owner of the penguin
     this.createdAt = data.createdAt || new Date();
     this.updatedAt = data.updatedAt || new Date();
   }
@@ -106,17 +107,19 @@ class Penguin {
     return result;
   }
 
-  // Get penguin statistics
-  static async getStats() {
+  // Get penguin statistics (optionally filtered by userId)
+  static async getStats(userId = null) {
     const start = Date.now();
     const collection = this.getCollection();
     
+    const query = userId ? { userId: new ObjectId(userId) } : {};
+    
     const [count, latestPenguin] = await Promise.all([
-      collection.countDocuments(),
-      collection.findOne({}, { sort: { createdAt: -1 } })
+      collection.countDocuments(query),
+      collection.findOne(query, { sort: { createdAt: -1 } })
     ]);
     
-    monitorQuery('getStats', Date.now() - start);
+    monitorQuery('getStats', Date.now() - start, { userId });
     
     return {
       total_penguins: count,
@@ -125,22 +128,40 @@ class Penguin {
     };
   }
 
-  // Search penguins by name or species
-  static async search(searchTerm) {
+  // Search penguins by name or species (optionally filtered by userId)
+  static async search(searchTerm, userId = null) {
     const start = Date.now();
     const collection = this.getCollection();
     const regex = new RegExp(searchTerm, 'i'); // Case-insensitive search
     
-    const penguins = await collection.find({
+    const query = {
       $or: [
         { name: regex },
         { species: regex }
       ]
-    }).toArray();
+    };
     
-    monitorQuery('search', Date.now() - start, { term: searchTerm, results: penguins.length });
+    // Add userId filter if provided
+    if (userId) {
+      query.userId = new ObjectId(userId);
+    }
+    
+    const penguins = await collection.find(query).toArray();
+    
+    monitorQuery('search', Date.now() - start, { term: searchTerm, results: penguins.length, userId });
     
     return penguins;
+  }
+
+  // Count penguins for a specific user
+  static async countByUser(userId) {
+    const start = Date.now();
+    const collection = this.getCollection();
+    const count = await collection.countDocuments({ userId: new ObjectId(userId) });
+    
+    monitorQuery('countByUser', Date.now() - start, { userId, count });
+    
+    return count;
   }
 }
 

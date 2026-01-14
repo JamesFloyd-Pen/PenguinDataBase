@@ -1,6 +1,15 @@
 import { API_CONFIG } from '../utils/constants';
+import AuthService from './authService';
 
 export const penguinService = {
+  // Helper to get auth headers
+  getHeaders() {
+    return {
+      'Content-Type': 'application/json',
+      ...AuthService.getAuthHeader()
+    };
+  },
+
   async fetchBackendData() {
     try {
       const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.ROOT}`);
@@ -17,8 +26,15 @@ export const penguinService = {
 
   async fetchPenguins() {
     try {
-      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}`);
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}`, {
+        headers: this.getHeaders()
+      });
       const data = await response.json();
+      
+      if (!response.ok) {
+        return { success: false, error: data.message || 'Failed to fetch penguins' };
+      }
+      
       return { success: true, data };
     } catch (error) {
       console.error('Error fetching penguins:', error);
@@ -28,8 +44,15 @@ export const penguinService = {
 
   async fetchStats() {
     try {
-      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.STATS}`);
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.STATS}`, {
+        headers: this.getHeaders()
+      });
       const data = await response.json();
+      
+      if (!response.ok) {
+        return { success: false, error: data.message || 'Failed to fetch stats' };
+      }
+      
       return { success: true, data };
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -41,9 +64,7 @@ export const penguinService = {
     try {
       const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: this.getHeaders(),
         body: JSON.stringify(penguinData)
       });
       
@@ -52,7 +73,7 @@ export const penguinService = {
       if (response.ok) {
         return { success: true, data: result };
       } else {
-        return { success: false, error: result.error };
+        return { success: false, error: result.message || result.error };
       }
     } catch (error) {
       console.error('Error adding penguin:', error);
@@ -63,7 +84,8 @@ export const penguinService = {
   async deletePenguin(id) {
     try {
       const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: this.getHeaders()
       });
       
       const result = await response.json();
@@ -71,7 +93,7 @@ export const penguinService = {
       if (response.ok) {
         return { success: true, data: result };
       } else {
-        return { success: false, error: result.error };
+        return { success: false, error: result.message || result.error };
       }
     } catch (error) {
       console.error('Error deleting penguin:', error);
@@ -81,7 +103,9 @@ export const penguinService = {
 
   async searchPenguins(searchTerm) {
     try {
-      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}/search?q=${encodeURIComponent(searchTerm)}`);
+      const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PENGUINS}/search?q=${encodeURIComponent(searchTerm)}`, {
+        headers: this.getHeaders()
+      });
       const result = await response.json();
       
       if (response.ok) {
