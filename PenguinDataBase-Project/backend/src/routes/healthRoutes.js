@@ -6,6 +6,8 @@ const HealthController = require('../controllers/healthController');
 router.get('/', HealthController.healthCheck);
 router.get('/api/test', HealthController.apiTest);
 router.get('/api/db-test', HealthController.databaseTest);
+router.get('/api/health/detailed', HealthController.detailedHealth);
+router.get('/api/health/metrics', HealthController.getMetrics);
 
 module.exports = router;
 

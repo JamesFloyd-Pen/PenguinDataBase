@@ -1,6 +1,8 @@
 const database = require('../config/database');
 const { MESSAGES, STATUS_CODES, COLLECTIONS } = require('../utils/constants');
-const { createResponse } = require('../utils/helpers');
+const { createResponse, formatMemoryUsage, formatUptime } = require('../utils/helpers');
+const { getErrorRateStats } = require('../middleware/performanceMonitoring');
+const Penguin = require('../models/Penguin');
 
 class HealthController {
   // GET / - Basic health check
@@ -41,6 +43,71 @@ class HealthController {
     } catch (error) {
       next(error);
     }
+  }
+
+  // GET /api/health/detailed - Detailed health and performance metrics
+  static async detailedHealth(req, res, next) {
+    try {
+      const startTime = Date.now();
+      
+      // Gather all metrics
+      const [dbTest, errorStats] = await Promise.all([
+        database.testConnection().catch(err => ({ connected: false, error: err.message })),
+        Promise.resolve(getErrorRateStats())
+      ]);
+
+      const health = {
+        status: dbTest.connected ? 'healthy' : 'degraded',
+        timestamp: new Date().toISOString(),
+        uptime: formatUptime(process.uptime()),
+        environment: process.env.NODE_ENV || 'development',
+        
+        // System metrics
+        system: {
+          nodeVersion: process.version,
+          platform: process.platform,
+          memory: formatMemoryUsage(process.memoryUsage()),
+          cpuUsage: process.cpuUsage()
+        },
+
+        // Database status
+        database: {
+          connected: dbTest.connected,
+          mongodb_version: dbTest.mongodb_version || 'N/A',
+          database_name: dbTest.database || 'N/A'
+        },
+
+        // Performance metrics
+        performance: {
+          errorRate: errorStats,
+          healthCheckDuration: `${Date.now() - startTime}ms`
+        }
+      };
+
+      res.status(STATUS_CODES.OK).json(health);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // GET /api/health/metrics - Performance metrics only
+  static async getMetrics(req, res) {
+    const metrics = {
+      timestamp: new Date().toISOString(),
+      uptime: {
+        seconds: process.uptime(),
+        formatted: formatUptime(process.uptime())
+      },
+      memory: formatMemoryUsage(process.memoryUsage()),
+      errors: getErrorRateStats(),
+      process: {
+        pid: process.pid,
+        nodeVersion: process.version,
+        platform: process.platform
+      }
+    };
+
+    res.status(STATUS_CODES.OK).json(metrics);
   }
 }
 

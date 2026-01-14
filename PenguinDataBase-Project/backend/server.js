@@ -9,6 +9,7 @@ const serverConfig = require('./src/config/server');
 const database = require('./src/config/database');
 const routes = require('./src/routes');
 const { errorHandler, notFoundHandler } = require('./src/middleware/errorHandler');
+const { requestPerformanceMonitor, errorRateMonitor } = require('./src/middleware/performanceMonitoring');
 
 // Create Express application
 const app = express();
@@ -17,6 +18,10 @@ const app = express();
 app.use(cors(serverConfig.cors));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Performance monitoring middleware
+app.use(requestPerformanceMonitor);
+app.use(errorRateMonitor);
 
 // Request logging middleware (development only)
 if (serverConfig.NODE_ENV === 'development') {

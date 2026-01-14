@@ -5,6 +5,17 @@
 Penguin Database is a full-stack web application that allows users to enter their unique penguins, visualize them on an interactive map, and serve as an open-source platform for penguin data and information.
 
 
+## Key Features
+
+- 🐧 **CRUD Operations** - Create, read, update, and delete penguin records
+- 🗺️ **Interactive Mapping** - Visualize penguin locations using Leaflet
+- 🔍 **Search Functionality** - Find penguins by name or species
+- 📊 **Performance Monitoring** - Real-time request and database query tracking
+- 🏥 **Health Monitoring** - Comprehensive system health and metrics endpoints
+- ✅ **Input Validation** - Robust data validation and sanitization
+- 🧪 **Test Coverage** - Jest unit tests for models
+
+
 ## Technologies Used
 
 ### Frontend
@@ -22,9 +33,103 @@ Penguin Database is a full-stack web application that allows users to enter thei
 ### Architecture
 - MVC Pattern
 - React Context API for state management
+- Performance monitoring middleware
+- Error rate tracking
+- Database query optimization
 
 ### AI Agent
 - Github Copilot and Claude
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB (local or Atlas)
+- npm or yarn
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+   ```bash
+   cd PenguinDataBase-Project/backend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file with your MongoDB connection string:
+   ```env
+   MONGODB_URI=mongodb://localhost:27017/penguindb
+   PORT=5000
+   NODE_ENV=development
+   ```
+
+4. Start the server:
+   ```bash
+   npm start          # Production mode
+   npm run dev        # Development mode with auto-restart
+   ```
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd PenguinDataBase-Project/frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+
+The frontend will run on `http://localhost:3000` and the backend on `http://localhost:5000`.
+
+## API Endpoints
+
+### Penguin Operations
+- `GET /api/penguins` - Get all penguins
+- `GET /api/penguins/:id` - Get penguin by ID
+- `POST /api/penguins` - Create new penguin
+- `PUT /api/penguins/:id` - Update penguin
+- `DELETE /api/penguins/:id` - Delete penguin
+- `GET /api/penguins/search?q=term` - Search penguins
+- `GET /api/penguins/stats` - Get database statistics
+
+### Health & Monitoring
+- `GET /` - Basic health check
+- `GET /api/test` - API functionality test
+- `GET /api/db-test` - Database connection test
+- `GET /api/health/detailed` - Detailed system health and performance metrics
+- `GET /api/health/metrics` - Performance metrics (uptime, memory, error rates)
+
+## Performance Monitoring
+
+The application includes built-in performance monitoring:
+
+- **Request Tracking**: Monitors request duration and memory usage
+- **Slow Request Detection**: Alerts on requests taking >1s (warning) or >3s (critical)
+- **Database Query Monitoring**: Tracks query performance with 100ms threshold
+- **Error Rate Tracking**: Real-time error rate calculation over 60s windows
+- **System Metrics**: CPU, memory, and uptime tracking
+
+Check metrics at `/api/health/detailed` for comprehensive system status.
+
+## Testing
+
+Run the test suite:
+```bash
+cd PenguinDataBase-Project/backend
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+npm run test:coverage # With coverage report
+```
 
 ## Demo
 
