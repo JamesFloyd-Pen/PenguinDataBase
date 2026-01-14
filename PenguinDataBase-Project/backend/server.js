@@ -10,6 +10,7 @@ const database = require('./src/config/database');
 const routes = require('./src/routes');
 const { errorHandler, notFoundHandler } = require('./src/middleware/errorHandler');
 const { requestPerformanceMonitor, errorRateMonitor } = require('./src/middleware/performanceMonitoring');
+const { generalLimiter } = require('./src/middleware/rateLimiting');
 
 // Create Express application
 const app = express();
@@ -18,6 +19,9 @@ const app = express();
 app.use(cors(serverConfig.cors));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Rate limiting (apply early to protect all endpoints)
+app.use(generalLimiter);
 
 // Performance monitoring middleware
 app.use(requestPerformanceMonitor);

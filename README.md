@@ -10,7 +10,8 @@ Penguin Database is a full-stack web application that allows users to enter thei
 - 🐧 **CRUD Operations** - Create, read, update, and delete penguin records
 - 🗺️ **Interactive Mapping** - Visualize penguin locations using Leaflet
 - 🔍 **Search Functionality** - Find penguins by name or species
-- 📊 **Performance Monitoring** - Real-time request and database query tracking
+- �️ **API Rate Limiting** - Protection against abuse with tiered rate limits
+- �📊 **Performance Monitoring** - Real-time request and database query tracking
 - 🏥 **Health Monitoring** - Comprehensive system health and metrics endpoints
 - ✅ **Input Validation** - Robust data validation and sanitization
 - 🧪 **Test Coverage** - Jest unit tests for models
@@ -109,7 +110,44 @@ The frontend will run on `http://localhost:3000` and the backend on `http://loca
 - `GET /api/health/detailed` - Detailed system health and performance metrics
 - `GET /api/health/metrics` - Performance metrics (uptime, memory, error rates)
 
-## Performance Monitoring
+## Security & Performance Features
+
+### API Rate Limiting
+
+The API implements tiered rate limiting to prevent abuse and ensure fair usage:
+
+**General Limits:**
+- All endpoints: 100 requests per 15 minutes per IP
+
+**Read Operations** (GET):
+- 60 requests per minute per IP
+- Applies to: `/api/penguins`, `/api/penguins/:id`, `/api/penguins/search`, `/api/penguins/stats`
+
+**Write Operations** (PUT/DELETE):
+- 20 requests per minute per IP
+- Applies to: Update and delete endpoints
+
+**Create Operations** (POST):
+- 10 requests per minute per IP
+- Strictest limits to prevent spam
+- Applies to: `/api/penguins` (create)
+
+**Rate Limit Response:**
+When exceeded, you'll receive:
+```json
+{
+  "success": false,
+  "message": "Too many requests from this IP, please try again later.",
+  "retryAfter": "1 minute"
+}
+```
+
+Response headers include:
+- `RateLimit-Limit`: Request limit per window
+- `RateLimit-Remaining`: Remaining requests in current window
+- `RateLimit-Reset`: Time when the limit resets
+
+### Performance Monitoring
 
 The application includes built-in performance monitoring:
 
