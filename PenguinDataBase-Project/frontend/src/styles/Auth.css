@@ -193,6 +193,14 @@
   box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
 }
 
+.login-prompt-title {
+  color: black;
+}
+
+.login-prompt-text {
+  color: black;
+}
+
 @media (max-width: 600px) {
   .auth-card {
     padding: 2rem;

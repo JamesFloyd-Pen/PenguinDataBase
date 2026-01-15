@@ -27,8 +27,8 @@ const Home = () => {
           borderRadius: '8px',
           margin: '2rem 0'
         }}>
-          <h3>🔒 Add Your Own Penguins!</h3>
-          <p>Log in to start building your personal penguin collection.</p>
+          <h3 className="login-prompt-title">🔒 Add Your Own Penguins!</h3>
+          <p className="login-prompt-text">Log in to start building your personal penguin collection.</p>
           <button 
             onClick={() => navigate('/login')} 
             className="auth-button"
