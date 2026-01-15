@@ -60,14 +60,7 @@ Penguin Database is a full-stack web application that allows users to enter thei
    npm install
    ```
 
-3. Create a `.env` file with your MongoDB connection string:
-   ```env
-   MONGODB_URI=mongodb://localhost:27017/penguindb
-   PORT=5000
-   NODE_ENV=development
-   ```
-
-4. Start the server:
+3. Start the server:
    ```bash
    npm start          # Production mode
    npm run dev        # Development mode with auto-restart
