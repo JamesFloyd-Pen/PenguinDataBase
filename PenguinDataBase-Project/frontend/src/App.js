@@ -11,7 +11,7 @@ import Register from './pages/Register';
 import Account from './pages/Account';
 import { PenguinProvider } from './context/PenguinContext';
 import { AuthProvider } from './context/AuthContext';
-import './App.css';
+import './styles/App.css';
 
 function App() {
   return (

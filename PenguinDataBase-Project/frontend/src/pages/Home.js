@@ -11,10 +11,10 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <DailyPenguin />
       
       {isAuthenticated ? (
         <>
+          <DailyPenguin />
           <h3>Welcome back, {user?.username}! 🐧</h3>
           <p>Add a new penguin to your collection:</p>
           <PenguinForm />
