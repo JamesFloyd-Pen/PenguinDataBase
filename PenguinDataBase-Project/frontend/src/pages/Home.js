@@ -32,7 +32,6 @@ const Home = () => {
           <button 
             onClick={() => navigate('/login')} 
             className="auth-button"
-            style={{ marginTop: '1rem' }}
           >
             Login to Add Penguins
           </button>
